@@ -9,6 +9,14 @@ gem 'spring', :group => :development
 
 gem "mongoid", "~> 4.0.0"
 
+gem 'devise'
+
+gem 'jwt'
+
+gem 'rack-cors'
+
+gem 'active_model_serializers', '0.7.0'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
