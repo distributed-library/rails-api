@@ -2,10 +2,6 @@ module V1
   class ApiController < ApplicationController
     before_action :validate_token!
 
-    rescue_from CanCan::AccessDenied do |exception|
-      render_unauthorized
-    end
-
     private
 
     def validate_token!(options = {})

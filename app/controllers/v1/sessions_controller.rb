@@ -6,7 +6,7 @@ module V1
 
     def create
       @user, login = User.session_auth(permit_params)
-      if login && @user.confirmed?
+      if login# && @user.confirmed?
         success_login
       else
         invalid_login
@@ -35,12 +35,9 @@ module V1
     def success_login
       token = sign_in_and_return_token
       render json: {
-        :success => true,
         :info => "Logged in",
         :username => @user.username,
         :userid => @user.id,
-        :anonymous => @user.anonymous,
-        :profile_image => @user.profile_image,
         :email => @user.email,
         :token => token 
       },
@@ -61,11 +58,11 @@ module V1
     def sign_in_and_return_token
       sign_in @user
       # Generate JWT token here
-      token = JWT.encode({"exp" => 4.week.from_now.to_i, "user" => @user}, Rails.application.secrets.jwt_key)
+      token = JWT.encode({"exp" => 4.week.from_now.to_i, "user" => @user}, Rails.application.secrets.secret_key_base)
     end
 
     def permit_params
-      params.permit(:auth_code, :handle, :token, :email, :provider, :redirect_url, :user_id, session: [:email, :password])
+      params.permit(:auth_code, :handle, :token, :email, :provider, :redirect_url, :user_id, user: [:email, :password])
     end
 
   end

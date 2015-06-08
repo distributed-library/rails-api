@@ -5,13 +5,13 @@ module User::Auth
     when 'google'
       google_auth params 
     else
-      database_auth(params[:session][:email], params[:session][:password])
+      database_auth(params[:user][:email], params[:user][:password])
     end
   end
 
   def database_auth(email, password)
     user = User.where(email: email).first
-    return [user, true] if user && user.valid_password?(password) && user.confirmed?
+    return [user, true] if user && user.valid_password?(password)# && user.confirmed?
     return [user, false]
   end
 
