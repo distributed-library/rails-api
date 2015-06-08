@@ -36,4 +36,7 @@ class User
 
   field :username, type: String
 
+  extend User::Auth
+
+  has_many :authentications
 end
