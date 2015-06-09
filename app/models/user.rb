@@ -39,4 +39,5 @@ class User
   extend User::Auth
 
   has_many :authentications
+  has_and_belongs_to_many :groups
 end
