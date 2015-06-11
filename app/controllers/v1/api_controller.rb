@@ -1,5 +1,6 @@
 module V1
   class ApiController < ApplicationController
+    include ActionController::Serialization
     before_action :validate_token!
 
     private
@@ -9,12 +10,12 @@ module V1
         if request.headers['Authorization'].present?
           token = request.headers['Authorization'].split(' ').last
           # Claims is a hash list. Can use 'email' and 'id' to find and verify user.
-          claims = JWT.decode(token, Rails.application.secrets.jwt_key, true, options)
+          claims = JWT.decode(token, Rails.application.secrets.secret_key_base, true, options)
           # claims [{"exp"=>"2015-01-13T19:09:21.785Z", "user"=>{"user"=>
           # {"id"=>93, "email"=>"anil@gmail.com", "created_at"=>"2014-12-16T16:42:26.399Z", 
           # "updated_at"=>"2014-12-16T19:09:21.761Z", "username"=>"anil", "anonymous"=>false, 
           # "short_bio"=>nil}}}, {"typ"=>"JWT", "alg"=>"HS256"}]
-          set_current_user(claims[0]['user']['user']['id'])
+          set_current_user(claims[0]['user_id'])
         else
           render_invalid_header
         end

@@ -58,7 +58,7 @@ module V1
     def sign_in_and_return_token
       sign_in @user
       # Generate JWT token here
-      token = JWT.encode({"exp" => 4.week.from_now.to_i, "user" => @user}, Rails.application.secrets.secret_key_base)
+      token = JWT.encode({"exp" => 4.week.from_now.to_i, "user_id" => @user.id.to_s}, Rails.application.secrets.secret_key_base)
     end
 
     def permit_params

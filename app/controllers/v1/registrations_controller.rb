@@ -57,7 +57,7 @@ module V1
 
     def render_success(user)
       sign_in user
-      token = JWT.encode({'exp' => 4.week.from_now.to_i, 'user' => user }, Rails.application.secrets.jwt_key)
+      token = JWT.encode({'exp' => 4.week.from_now.to_i, 'user_id' => user.id.to_s }, Rails.application.secrets.jwt_key)
       render json: {
         :success => true,
         :info => "Registered",
