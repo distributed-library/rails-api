@@ -35,13 +35,12 @@ module V1
     def success_login
       token = sign_in_and_return_token
       render json: {
-        :info => "Logged in",
-        :username => @user.username,
-        :userid => @user.id,
-        :email => @user.email,
-        :token => token 
+        info: "Logged in",
+        username: @user.username,
+        email: @user.email,
+        token: token 
       },
-      :status => :created
+      status: :created
     end
 
     def invalid_login
