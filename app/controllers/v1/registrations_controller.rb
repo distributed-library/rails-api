@@ -62,7 +62,7 @@ module V1
         :success => true,
         :info => "Registered",
         :username => user.username,
-        :userid => current_user.id,
+        :user_id => current_user.id,
         :email => user.email,
         :token => token, 
       },

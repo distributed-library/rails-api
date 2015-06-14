@@ -8,7 +8,8 @@ module V1
     end
 
     def create
-      render json: current_user.groups.create(group_params)
+      param = group_params.merge!({owner_id: current_user.id.to_s})
+      render json: current_user.groups.create(param)
     end
 
     def show

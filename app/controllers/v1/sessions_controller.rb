@@ -38,6 +38,7 @@ module V1
         info: "Logged in",
         username: @user.username,
         email: @user.email,
+        user_id: @user.id.to_s,
         token: token 
       },
       status: :created
