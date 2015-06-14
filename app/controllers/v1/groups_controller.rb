@@ -8,7 +8,7 @@ module V1
     end
 
     def create
-      respond_with current_user.groups.create(group_params)
+      render json: current_user.groups.create(group_params)
     end
 
     def show
