@@ -5,28 +5,17 @@ module V1
     respond_to :json
 
     def create
-      if params[:user]
-        create_user
-      end
-    end
-
-    def create_user
-      if params[:user][:user_id].present?
-        user = User.find(params[:user][:user_id])
-        param = sign_up_params.merge!({anonymous: false})
-        user.assign_attributes(param)
-      else
-        user = User.new(sign_up_params)
-      end
+      user = User.new(sign_up_params)
       save_return user
     end
 
     def save_return user
-      begin
-        # render because devise redirecting to session/new
-        user.save! and render json: {success: true} or render_error(user)
-        # Any database exceptions handled here
-      rescue
+      # render because devise redirecting to session/new
+      #user.save! and render json: {success: true} or render_error(user)
+      # Any database exceptions handled here
+      if user.save!
+        render_success user
+      else
         render_error user
       end
     end
@@ -57,22 +46,20 @@ module V1
 
     def render_success(user)
       sign_in user
-      token = JWT.encode({'exp' => 4.week.from_now.to_i, 'user_id' => user.id.to_s }, Rails.application.secrets.jwt_key)
+      token = JWT.encode({'exp' => 4.week.from_now.to_i, 'user_id' => user.id.to_s }, Rails.application.secrets.secret_key_base)
       render json: {
-        :success => true,
-        :info => "Registered",
-        :username => user.username,
-        :user_id => current_user.id,
-        :email => user.email,
-        :token => token, 
+        info: "Sign up",
+        username: user.username,
+        email: user.email,
+        user_id: user.id.to_s,
+        token: token 
       },
-      :status => :created
+      status: :created
     end
 
     def render_error user
       render :status => :unprocessable_entity,
-        :json => { :success => false,
-                   :error => user.present? ? user.errors : ''}
+        :json => user.errors
     end
 
     def sign_up_params
