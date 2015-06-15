@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   scope module: :v1, constraints: ApiConstraint.new(version: 1) do
     resources :resources
     resources :groups
+    resources :users
+    resources :usergroups
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'

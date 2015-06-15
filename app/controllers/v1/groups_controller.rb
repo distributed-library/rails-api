@@ -1,10 +1,10 @@
 module V1
   class GroupsController < ApiController
     respond_to :json
-    before_action :load_post, only: [:show]
+    before_action :load_group, only: [:show, :destroy]
 
     def index
-      render json: current_user.groups
+      render json: Group.all
     end
 
     def create
@@ -16,13 +16,17 @@ module V1
       render json: @group, root: false
     end
 
+    def destroy
+      render json: @group.destroy
+    end
+
     private
 
     def group_params
       params.require(:group).permit(:name, :public)
     end
 
-    def load_post
+    def load_group
       @group = current_user.groups.where(id: params[:id])
     end
   end
