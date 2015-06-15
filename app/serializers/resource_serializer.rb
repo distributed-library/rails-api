@@ -1,3 +1,3 @@
 class ResourceSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :resource_type, :aasm_state
 end
