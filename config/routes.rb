@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :groups
     resources :users
     resources :usergroups
+    resources :resourcegroups
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'

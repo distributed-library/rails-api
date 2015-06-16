@@ -18,6 +18,11 @@ gem 'rack-cors'
 gem 'active_model_serializers', '0.9.3'
 
 gem 'aasm'
+
+group :development, :test do
+  gem "rspec_api_documentation"
+  gem "apitome"
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
