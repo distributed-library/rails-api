@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users
     resources :usergroups
     resources :resourcegroups
+    get 'available_resource' => 'resources#available'
     devise_scope :user do
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'

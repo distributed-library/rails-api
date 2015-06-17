@@ -3,7 +3,7 @@ module V1
     before_action :load_resource, only: [:show, :update, :delete]
 
     def index
-      render json: Resource.all
+      render json: current_user.resources
     end
 
     def create
@@ -16,6 +16,10 @@ module V1
 
     def show
       render json: @resource
+    end
+
+    def available
+      render json: current_user.groups.collect{|group| group.resources.where(aasm_state: 'available')}.flatten, root: 'available_resource'
     end
 
     def destroy
