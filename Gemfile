@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
 
 gem 'rails', '4.2.1'
 
@@ -19,10 +20,14 @@ gem 'active_model_serializers', '0.9.3'
 
 gem 'aasm'
 
+gem "apitome"
+
 group :development, :test do
   gem "rspec_api_documentation"
-  gem "apitome"
 end
+
+gem 'rails_12factor', group: :production
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
