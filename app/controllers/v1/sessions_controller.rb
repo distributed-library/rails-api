@@ -48,9 +48,9 @@ module V1
       render :status => :unauthorized,
         json: { 
         :success => false,
-        :error => { 
-          :email => @user ? '' : "Invalid",
-          :password => "Invalid"
+        :errors => { 
+          :email => @user ? '' : ["Invalid"],
+          :password => ["Invalid"]
         }
       }
     end

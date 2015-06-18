@@ -41,4 +41,6 @@ class User
   has_many :authentications
   has_many :resources
   has_and_belongs_to_many :groups
+
+  validates :username, uniqueness: true
 end

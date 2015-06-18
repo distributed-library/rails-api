@@ -13,7 +13,7 @@ module V1
       # render because devise redirecting to session/new
       #user.save! and render json: {success: true} or render_error(user)
       # Any database exceptions handled here
-      if user.save!
+      if user.save
         render_success user
       else
         render_error user
@@ -59,7 +59,7 @@ module V1
 
     def render_error user
       render :status => :unprocessable_entity,
-        :json => user.errors
+        :json => {errors: user.errors}
     end
 
     def sign_up_params
