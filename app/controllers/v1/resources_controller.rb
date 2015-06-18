@@ -33,7 +33,7 @@ module V1
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :resource_type, group_ids: [])
+      params.require(:resource).permit(:name, :resource_type, :aasm_state, group_ids: [])
     end
 
   end

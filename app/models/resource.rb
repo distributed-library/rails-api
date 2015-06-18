@@ -4,8 +4,8 @@ class Resource
 
   field :name, type: String
   field :resource_type, type: String
-  field :user_id, type: Integer 
-  field :issuer_id, type: Integer 
+  field :user_id, type: String 
+  field :issuer_id, type: String
   field :aasm_state
 
   belongs_to :user
@@ -31,5 +31,12 @@ class Resource
 
   def owner_name
     self.user ? self.user.username : ''
+  end
+
+  def issuer_name
+    if self.issued? || self.pending_approval? 
+      user = User.where(id: issuer_id).first
+      user ? user.username : ''
+    end
   end
 end

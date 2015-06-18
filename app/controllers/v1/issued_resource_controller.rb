@@ -6,7 +6,7 @@ module V1
 
     def create
       resource = Resource.find(params[:issuedResource][:id])
-      resource.issuer_id = current_user.id.to_s
+      resource.update_attribute(:issuer_id,current_user.id.to_s)
       render json: resource.issue!
     end
 
