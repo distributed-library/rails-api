@@ -1,7 +1,7 @@
 module V1
   class IssuedResourceController < ApiController
     def index
-      render json: current_user.groups.collect{|group| group.resources.not.where(aasm_state: 'available')}.flatten, root: 'issued_resource'
+      render json: current_user.groups.collect{|group| group.resources.where(issuer_id: current_user.id).not.where(aasm_state: 'available')}.flatten, root: 'issued_resource'
     end
 
     def create
