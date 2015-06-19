@@ -24,6 +24,8 @@ gem "apitome"
 
 group :development, :test do
   gem "rspec_api_documentation"
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 gem 'rails_12factor', group: :production
