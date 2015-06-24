@@ -14,7 +14,7 @@ module V1
     end
 
     def forgot_password
-      user = User.find_by_email(params[:email])
+      user = User.where(email: params[:email]).first
       user.send_reset_password_instructions if user.present?
       render json: {success: true}, status: 200
     end

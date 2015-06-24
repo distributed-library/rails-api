@@ -10,7 +10,6 @@ module Requests
 
     # for use in request specs
     def sign_in(user)
-      user.confirm!
       login_as user
     end
 
