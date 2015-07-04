@@ -1,6 +1,6 @@
 module V1
   class ResourcesController < ApiController
-    before_action :load_resource, only: [:show, :update, :delete]
+    before_action :load_resource, only: [:show, :update, :destroy]
 
     def index
       render json: current_user.resources
@@ -33,7 +33,7 @@ module V1
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :resource_type, :aasm_state, group_ids: [])
+      params.require(:resource).permit(:name, :resource_type, :aasm_state, :isbn_number, group_ids: [])
     end
 
   end

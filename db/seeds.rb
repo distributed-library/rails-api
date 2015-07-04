@@ -15,7 +15,7 @@ csv.each do |row|
     unless user
       user = User.create!(username: ownername, email: "#{ownername}@joshsoftware.com", password: 'josh1234', group_ids: [group.id])
     end
-    resource = Resource.find_or_create_by(isbn_number: row["Isbn no"], user_id: user.id.to_s, group_ids: [group.id])
+    resource = Resource.find_or_create_by(isbn_number: row["Isbn no"], resource_type: 'book', user_id: user.id.to_s, group_ids: [group.id])
     resource.update_attribute('name', row["Name"])
   end
 end
