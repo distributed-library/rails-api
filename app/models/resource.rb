@@ -7,6 +7,7 @@ class Resource
   field :user_id, type: String 
   field :issuer_id, type: String
   field :aasm_state
+  field :isbn_number
 
   belongs_to :user
   has_and_belongs_to_many :groups
