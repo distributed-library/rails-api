@@ -21,7 +21,7 @@ gem 'active_model_serializers', '0.9.3'
 gem 'aasm'
 
 gem "apitome"
-
+gem 'googlebooks', '~> 0.0.9'
 group :development, :test do
   gem "rspec_api_documentation"
   gem 'factory_girl_rails'
