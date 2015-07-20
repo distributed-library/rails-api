@@ -35,6 +35,10 @@ class User
   # field :locked_at,       type: Time
 
   field :username, type: String
+  field :first_name, type: String
+  field :last_name, type: String
+  field :profile_picture, type: String
+  field :short_bio, type: String
 
   extend User::Auth
 
