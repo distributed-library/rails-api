@@ -65,6 +65,11 @@ GEM
       railties (>= 3.0.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    googlebooks (0.0.9)
+      httparty
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     json (1.8.3)
     jwt (1.5.0)
@@ -85,6 +90,7 @@ GEM
       bson (~> 3.0.4)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
+    multi_xml (0.5.5)
     mustache (0.99.8)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -172,6 +178,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  googlebooks (~> 0.0.9)
   jwt
   mongoid (~> 4.0.0)
   rack-cors
@@ -180,3 +187,6 @@ DEPENDENCIES
   rails_12factor
   rspec_api_documentation
   spring
+
+BUNDLED WITH
+   1.10.5

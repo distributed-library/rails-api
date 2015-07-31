@@ -1,6 +1,7 @@
 module V1
   class ResourcesController < ApiController
     before_action :load_resource, only: [:show, :update, :destroy]
+    before_action :search_params, only: [ :search ]
 
     def index
       render json: current_user.resources
@@ -26,7 +27,24 @@ module V1
       render json: @resource.destroy
     end
 
+    # Search book details by isbn number or book title
+    # params
+    # params[:isbn]#String
+    # params[:title]#String
+    def search
+      book = Book.new(params)
+      render json: book.search
+    end
+
     private
+
+    def search_params
+      render json: { message: "Please provide isbn number or title for book" } if invalid_search_params?
+    end
+
+    def invalid_search_params?
+      params[:isbn].blank? && params[:title].blank?
+    end
 
     def load_resource
       @resource = Resource.find(params[:id])
