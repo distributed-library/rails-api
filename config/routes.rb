@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
     end
     resources :groups
+    resources :members, only: [:index]
     resources :users
     resources :usergroups
     resources :resourcegroups

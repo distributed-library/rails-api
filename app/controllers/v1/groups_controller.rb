@@ -13,7 +13,7 @@ module V1
     end
 
     def show
-      render json: @group, root: false
+      render json: @group
     end
 
     def destroy
