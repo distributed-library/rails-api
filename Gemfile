@@ -8,7 +8,7 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
-gem "mongoid", "~> 4.0.0"
+gem "mongoid", "~> 5.0.1"
 
 gem 'devise'
 
